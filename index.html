@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Importação Completa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+        }
+        /* Estilização da setinha do Select */
+        .select-custom {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.25rem;
+            padding-right: 2.5rem;
+        }
+        select option { background: #1e293b; color: white; }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+
+    <div class="glass-card w-full max-w-md p-8 shadow-2xl">
+        <h2 class="text-white text-2xl font-bold mb-6 text-center">Simulador de Impostos</h2>
+        
+        <div class="space-y-5">
+            <!-- Dropdown com todos os estados e a setinha -->
+            <div>
+                <label class="block text-slate-400 text-sm mb-2">Estado de Destino</label>
+                <select id="estado" class="select-custom w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                    <option value="17">Acre (AC) - 17%</option>
+                    <option value="17">Alagoas (AL) - 17%</option>
+                    <option value="17">Amapá (AP) - 17%</option>
+                    <option value="17">Amazonas (AM) - 17%</option>
+                    <option value="17">Bahia (BA) - 17%</option>
+                    <option value="17">Ceará (CE) - 17%</option>
+                    <option value="17">Distrito Federal (DF) - 17%</option>
+                    <option value="17" selected>Espírito Santo (ES) - 17%</option>
+                    <option value="17">Goiás (GO) - 17%</option>
+                    <option value="17">Maranhão (MA) - 17%</option>
+                    <option value="17">Mato Grosso (MT) - 17%</option>
+                    <option value="17">Mato Grosso do Sul (MS) - 17%</option>
+                    <option value="17">Minas Gerais (MG) - 17%</option>
+                    <option value="17">Pará (PA) - 17%</option>
+                    <option value="17">Paraíba (PB) - 17%</option>
+                    <option value="17">Paraná (PR) - 17%</option>
+                    <option value="17">Pernambuco (PE) - 17%</option>
+                    <option value="17">Piauí (PI) - 17%</option>
+                    <option value="17">Rio de Janeiro (RJ) - 17%</option>
+                    <option value="17">Rio Grande do Norte (RN) - 17%</option>
+                    <option value="17">Rio Grande do Sul (RS) - 17%</option>
+                    <option value="17">Rondônia (RO) - 17%</option>
+                    <option value="17">Roraima (RR) - 17%</option>
+                    <option value="17">Santa Catarina (SC) - 17%</option>
+                    <option value="17">São Paulo (SP) - 17%</option>
+                    <option value="17">Sergipe (SE) - 17%</option>
+                    <option value="17">Tocantins (TO) - 17%</option>
+                </select>
+            </div>
+
+            <!-- Preço de Entrada -->
+            <div>
+                <label class="block text-slate-400 text-sm mb-2">Valor do Produto (R$)</label>
+                <input type="number" id="valorBase" placeholder="Ex: 200.00" 
+                    class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+            </div>
+
+            <!-- Resultado 1 -->
+            <div>
+                <label class="block text-slate-400 text-sm mb-2">Total (20% Taxa + ICMS)</label>
+                <input type="text" id="valorComTaxas" readonly 
+                    class="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-emerald-400 font-bold focus:outline-none">
+            </div>
+
+            <!-- Resultado 2 -->
+            <div>
+                <label class="block text-slate-400 text-sm mb-2">Valor sem a "Taxa da Blusinha"</label>
+                <input type="text" id="valorSemBlusinha" readonly 
+                    class="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-blue-400 font-bold focus:outline-none">
+            </div>
+
+            <!-- Botão de Calcular -->
+            <button onclick="calcular()" 
+                class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-95">
+                Calcular Agora
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function calcular() {
+            const inputBase = document.getElementById('valorBase').value;
+            const valorBase = parseFloat(inputBase);
+            const icmsEstado = parseFloat(document.getElementById('estado').value) / 100;
+            
+            if (!inputBase || valorBase <= 0) {
+                alert("Por favor, digite um valor.");
+                return;
+            }
+
+            // Regra: Imposto de Importação (20%) + ICMS (Cálculo por dentro)
+            const taxaImportacao = 1.20;
+            
+            // Valor Final = (Valor * 1.20) / (1 - ICMS)
+            const totalComTudo = (valorBase * taxaImportacao) / (1 - icmsEstado);
+
+            // Valor Sem os 20% = Valor / (1 - ICMS)
+            const totalSoIcms = valorBase / (1 - icmsEstado);
+
+            const formatar = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+            document.getElementById('valorComTaxas').value = formatar(totalComTudo);
+            document.getElementById('valorSemBlusinha').value = formatar(totalSoIcms);
+        }
+    </script>
+</body>
+</html>
