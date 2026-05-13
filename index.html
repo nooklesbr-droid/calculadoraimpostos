@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Importação Completa</title>
+    <title>Calculadora Importação 2026 - Atualizada</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -18,14 +18,12 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 1.5rem;
         }
-        /* Estilização da setinha do Select */
         .select-custom {
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
             background-size: 1.25rem;
-            padding-right: 2.5rem;
         }
         select option { background: #1e293b; color: white; }
     </style>
@@ -33,68 +31,67 @@
 <body class="flex items-center justify-center p-4">
 
     <div class="glass-card w-full max-w-md p-8 shadow-2xl">
-        <h2 class="text-white text-2xl font-bold mb-6 text-center">Simulador de Impostos</h2>
+        <h2 class="text-white text-2xl font-bold mb-6 text-center">Calculadora de Tributos</h2>
         
         <div class="space-y-5">
-            <!-- Dropdown com todos os estados e a setinha -->
+            <!-- Dropdown com Alíquotas Atualizadas -->
             <div>
-                <label class="block text-slate-400 text-sm mb-2">Estado de Destino</label>
-                <select id="estado" class="select-custom w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
-                    <option value="17">Acre (AC) - 17%</option>
-                    <option value="17">Alagoas (AL) - 17%</option>
-                    <option value="17">Amapá (AP) - 17%</option>
-                    <option value="17">Amazonas (AM) - 17%</option>
-                    <option value="17">Bahia (BA) - 17%</option>
-                    <option value="17">Ceará (CE) - 17%</option>
-                    <option value="17">Distrito Federal (DF) - 17%</option>
+                <label class="block text-slate-400 text-sm mb-2">Estado de Destino (ICMS 2026)</label>
+                <select id="estado" class="select-custom w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="19">Acre (AC) - 19%</option>
+                    <option value="19">Alagoas (AL) - 19%</option>
+                    <option value="18">Amapá (AP) - 18%</option>
+                    <option value="18">Amazonas (AM) - 18%</option>
+                    <option value="19">Bahia (BA) - 19%</option>
+                    <option value="20">Ceará (CE) - 20%</option>
+                    <option value="20">Distrito Federal (DF) - 20%</option>
                     <option value="17" selected>Espírito Santo (ES) - 17%</option>
-                    <option value="17">Goiás (GO) - 17%</option>
-                    <option value="17">Maranhão (MA) - 17%</option>
+                    <option value="19">Goiás (GO) - 19%</option>
+                    <option value="22">Maranhão (MA) - 22%</option>
                     <option value="17">Mato Grosso (MT) - 17%</option>
                     <option value="17">Mato Grosso do Sul (MS) - 17%</option>
-                    <option value="17">Minas Gerais (MG) - 17%</option>
-                    <option value="17">Pará (PA) - 17%</option>
-                    <option value="17">Paraíba (PB) - 17%</option>
-                    <option value="17">Paraná (PR) - 17%</option>
-                    <option value="17">Pernambuco (PE) - 17%</option>
-                    <option value="17">Piauí (PI) - 17%</option>
-                    <option value="17">Rio de Janeiro (RJ) - 17%</option>
-                    <option value="17">Rio Grande do Norte (RN) - 17%</option>
+                    <option value="18">Minas Gerais (MG) - 18%</option>
+                    <option value="19">Pará (PA) - 19%</option>
+                    <option value="20">Paraíba (PB) - 20%</option>
+                    <option value="19.5">Paraná (PR) - 19,5%</option>
+                    <option value="20.5">Pernambuco (PE) - 20,5%</option>
+                    <option value="21">Piauí (PI) - 21%</option>
+                    <option value="20">Rio de Janeiro (RJ) - 20%</option>
+                    <option value="20">Rio Grande do Norte (RN) - 20%</option>
                     <option value="17">Rio Grande do Sul (RS) - 17%</option>
-                    <option value="17">Rondônia (RO) - 17%</option>
-                    <option value="17">Roraima (RR) - 17%</option>
+                    <option value="19.5">Rondônia (RO) - 19,5%</option>
+                    <option value="20">Roraima (RR) - 20%</option>
                     <option value="17">Santa Catarina (SC) - 17%</option>
-                    <option value="17">São Paulo (SP) - 17%</option>
-                    <option value="17">Sergipe (SE) - 17%</option>
-                    <option value="17">Tocantins (TO) - 17%</option>
+                    <option value="18">São Paulo (SP) - 18%</option>
+                    <option value="19">Sergipe (SE) - 19%</option>
+                    <option value="20">Tocantins (TO) - 20%</option>
                 </select>
             </div>
 
             <!-- Preço de Entrada -->
             <div>
-                <label class="block text-slate-400 text-sm mb-2">Valor do Produto (R$)</label>
-                <input type="number" id="valorBase" placeholder="Ex: 200.00" 
-                    class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                <label class="block text-slate-400 text-sm mb-2">Preço no AliExpress (R$)</label>
+                <input type="number" id="valorBase" placeholder="0,00" 
+                    class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <!-- Resultado 1 -->
             <div>
-                <label class="block text-slate-400 text-sm mb-2">Total (20% Taxa + ICMS)</label>
+                <label class="block text-slate-400 text-sm mb-2">Total (20% II + ICMS Local)</label>
                 <input type="text" id="valorComTaxas" readonly 
-                    class="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-emerald-400 font-bold focus:outline-none">
+                    class="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-emerald-400 font-bold outline-none">
             </div>
 
             <!-- Resultado 2 -->
             <div>
-                <label class="block text-slate-400 text-sm mb-2">Valor sem a "Taxa da Blusinha"</label>
+                <label class="block text-slate-400 text-sm mb-2">Valor Sem a "Taxa das Blusinhas"</label>
                 <input type="text" id="valorSemBlusinha" readonly 
-                    class="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-blue-400 font-bold focus:outline-none">
+                    class="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-blue-400 font-bold outline-none">
             </div>
 
-            <!-- Botão de Calcular -->
             <button onclick="calcular()" 
-                class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-95">
-                Calcular Agora
+                class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-95 mt-2">
+                Calcular Valor Final
             </button>
         </div>
     </div>
@@ -106,17 +103,17 @@
             const icmsEstado = parseFloat(document.getElementById('estado').value) / 100;
             
             if (!inputBase || valorBase <= 0) {
-                alert("Por favor, digite um valor.");
+                alert("Insira um valor para calcular.");
                 return;
             }
 
-            // Regra: Imposto de Importação (20%) + ICMS (Cálculo por dentro)
-            const taxaImportacao = 1.20;
+            // Imposto de Importação (Federal)
+            const ii = 1.20; 
             
-            // Valor Final = (Valor * 1.20) / (1 - ICMS)
-            const totalComTudo = (valorBase * taxaImportacao) / (1 - icmsEstado);
+            // Cálculo com II + ICMS (Cálculo por dentro: valor / (1 - icms))
+            const totalComTudo = (valorBase * ii) / (1 - icmsEstado);
 
-            // Valor Sem os 20% = Valor / (1 - ICMS)
+            // Cálculo sem os 20% do II (Apenas ICMS por dentro)
             const totalSoIcms = valorBase / (1 - icmsEstado);
 
             const formatar = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
